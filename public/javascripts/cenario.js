@@ -1,9 +1,9 @@
 var imgParede;
 var tamBloco = 40;
 var tam = 15;
-
+var cenario = [[]];
 function LimparTela(){
-  cenario = [                 //
+ cenario = [                 
     ['f','f','f','f','f','f','f','f','f','f','f','f','f','f','f'],
     ['f','f','f','f','f','f','f','f','f','f','f','f','f','f','f'],
     ['f','f','f','f','f','f','f','f','f','f','f','f','f','f','f'],
@@ -23,18 +23,20 @@ function LimparTela(){
 }
 function mouseClicked() {
   if(cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] == '#'){
-    cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] = 'f'
+    cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] = 'b'
+  }else if(cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] == 'b'){
+    cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] = 't'
+  }else if(cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] == 't'){
+	cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] = 'f'
   }else{
-    cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] = '#'
+	  cenario[parseInt(mouseX/tamBloco)][parseInt(mouseY/tamBloco)] = '#'
   }
 }
 
-function SalvarDados(){
-  
-}
-
 function preload() {
-  imgParede = loadImage("./../images/tijolo.png");
+	imgFant = loadImage("./images/fantasma.gif");
+	imgFruta = loadImage("./images/fruta.jpg");
+	imgParede = loadImage("./images/tijolo.png");
 }
 
 function setup() {
@@ -58,7 +60,11 @@ function draw() {
         ellipse(pXmatriz , pYmatriz, tamBloco/5, tamBloco/5);
       }else if ( cenario[i][j] == '#'){
         image(imgParede,pXmatriz,pYmatriz);
-      }
+      }else if(cenario[i][j] == 'b'){
+		  image(imgFruta, pXmatriz, pYmatriz);
+	  }else if(cenario[i][j] == 't'){
+		  image(imgFant, pXmatriz, pYmatriz);
+	  }
     }
   }
 }
